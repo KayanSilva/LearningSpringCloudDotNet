@@ -1,12 +1,14 @@
 ﻿using LojaApi.Interfaces;
 using LojaApi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace LojaApi.Controllers
 {
-    [Route("v1/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class CompraController : Controller
+    public class CompraController : ControllerBase
     {
         private readonly ICompraService _compraService;
 
@@ -16,9 +18,11 @@ namespace LojaApi.Controllers
         }
 
         [HttpPost]
-        public void Realizar([FromBody] CompraRequest compraRequest)
+        public async Task<IActionResult> Realizar([FromBody] CompraRequest compraRequest)
         {
+            var result = await _compraService.Efetivar(compraRequest);
 
+            return new ObjectResult(result) { StatusCode = StatusCodes.Status200OK };
         }
     }
 }

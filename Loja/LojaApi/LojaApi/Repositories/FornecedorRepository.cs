@@ -15,7 +15,7 @@ namespace LojaApi.Repositories
             _httpClient = httpClient;
         }
 
-        public async Task<object> ObterInformacoes(string estado)
+        public async Task<InfoFornecedorResponse> ObterInformacoes(string estado)
         {
             var retorno = await _httpClient.GetAsync($"info/{estado}");
             return JsonSerializer.Deserialize<InfoFornecedorResponse>(await retorno.Content.ReadAsStringAsync());

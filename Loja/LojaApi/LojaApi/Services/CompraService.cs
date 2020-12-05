@@ -13,9 +13,9 @@ namespace LojaApi.Services
             _fornecedorRepository = fornecedorRepository;
         }
 
-        public Task Efetivar(CompraRequest compraRequest)
+        public async Task<object> Efetivar(CompraRequest compraRequest)
         {
-            throw new System.NotImplementedException();
+            return await _fornecedorRepository.ObterInformacoes(compraRequest.Endereco.Estado);
         }
     }
 }

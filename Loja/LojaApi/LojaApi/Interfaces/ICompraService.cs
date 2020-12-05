@@ -5,6 +5,6 @@ namespace LojaApi.Interfaces
 {
     public interface ICompraService
     {
-        Task Efetivar(CompraRequest compraRequest);
+        Task<object> Efetivar(CompraRequest compraRequest);
     }
 }
